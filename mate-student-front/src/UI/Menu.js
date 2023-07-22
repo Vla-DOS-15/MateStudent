@@ -1,31 +1,83 @@
-import React, {FontAwesomeIcon} from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-const Menu = () => {
+const MenuContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const MenuItem = styled.li`
+  margin-bottom: 10px;
+`;
+
+const MenuToggle = styled.button`
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const MenuList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  @media (max-width: 768px) {
+    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  }
+`;
+
+const Menu = ({ links }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <div style={{backgroundColor: "yellow", marginRight: "10px", paddingRight: "10px"}}>
-      <h3>Меню</h3>
-      
-      <ul>
-        <li>
-        
-          <Link class="fa fa-user" to="/profile"> Профіль</Link>
-        </li>
-        <li>
-          <Link class="fa fa-tasks" to="/new-tasks">Нові завдання</Link>
-        </li>
-        <li>
-          <Link class="fa fa-reply" to="/waiting-response">Очікування відповіді</Link>
-        </li>
-        <li>
-          <Link to="/my-tasks">Мої завдання</Link>
-        </li>
-        <li>
-          <Link to="/task-form">Додати завдання</Link>
-        </li>
-      </ul>
-    </div>
+    <MenuContainer>
+      <MenuToggle onClick={handleMenuToggle}>
+        <i className={`fa ${isMenuOpen ? 'fa-times' : 'fa-bars'}`} />
+      </MenuToggle>
+      <MenuList isOpen={isMenuOpen}>
+        {links.map((link, index) => (
+          <MenuItem key={index}>
+            <Link style={{color: 'black', fontSize: '16'}} to={link.to}>{link.label}</Link>
+          </MenuItem>
+        ))}
+      </MenuList>
+    </MenuContainer>
   );
 };
+
+Menu.propTypes = {
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      to: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+
+// const App = () => {
+//   return (
+//     <Router>
+//       <div>
+//         <Menu links={menuLinks} />
+//         <Routes>
+//           {/* Your other routes here */}
+//           <Route path="/profile" >Profile Page</Route>
+//           <Route path="/new-tasks">New Tasks Page</Route>
+//           <Route path="/waiting-response">Waiting Response Page</Route>
+//           <Route path="/my-tasks">My Tasks Page</Route>
+//           <Route path="/task-form">Task Form Page</Route>
+//         </Routes>
+//       </div>
+//     </Router>
+//   );
+// };
 
 export default Menu;

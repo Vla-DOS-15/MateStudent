@@ -1,0 +1,52 @@
+.for_dark_theme{
+    --primary-color: #9a97f3;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --bg-color: #161625;
+    --heading-color: #818cab;
+
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-right: 2em ;
+    padding: 0 auto;
+  }
+  
+  .toggle {
+    width: 50px;
+    height: 26px;
+    background-color: #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+  
+  .toggle.active {
+    background-color: #3a3a3a;
+  }
+  
+  .theme-icon {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 3px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .sun {
+    left: 3px;
+    fill: #f9c313; /* Yellow color for the sun */
+  }
+  
+  .moon {
+    right: 3px;
+  }
+  
+  .theme-icon.hidden {
+    opacity: 0;
+  }
+  

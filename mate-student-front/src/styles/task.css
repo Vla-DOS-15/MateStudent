@@ -1,29 +1,80 @@
+/* TaskForm.css */
+
 .container {
-    margin: 10px;
+    max-width: 800px;
+    margin: 10px auto;
     padding: 20px;
+    color: var(--body_color);
+    background-color: var(--body_background);
+
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  input,
+  textarea {
+    padding: 10px;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    color: var(--body_color);
+    background-color: var(--body_background);
   }
   
-  .form-group {
-    margin-bottom: 10px;
+  label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    transition: all 0.3s;
+    pointer-events: none;
+    color: var(--body_color);
+    background-color: var(--body_background);  }
+  
+  input:focus + label,
+  textarea:focus + label,
+  input:not(:placeholder-shown) + label,
+  textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 5px;
+    font-size: 14px;
+    color: var(--body_color);
+    background-color: var(--body_background);    padding: 2px 5px;
   }
   
-  .label {
-    font-weight: bold;
-  }
-  
-  .input {
-    padding: 5px;
-  }
-  
-  .textarea {
-    padding: 5px;
-  }
-  
-  .button {
-    padding: 8px 16px;
+  button {
+    padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    width: 100%;
   }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Media Queries */
+  @media screen and (max-width: 600px) {
+    .container {
+      padding: 10px;
+    }
+  
+    input,
+    textarea {
+      font-size: 14px;
+    }
+  }
+  

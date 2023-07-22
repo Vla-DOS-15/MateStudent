@@ -1,0 +1,51 @@
+/* menu.css */
+
+.menu-container {
+    background-color: yellow;
+    padding: 10px;
+  }
+  
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu-list li {
+    margin-bottom: 10px; /* Add spacing between menu items */
+  }
+  
+  .menu-list a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+  }
+  
+  /* Mobile version */
+  @media screen and (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+  
+    .menu-list {
+      display: none;
+    }
+  
+    .menu-list.open {
+      display: block;
+      position: absolute;
+      top: 70px;
+      right: 10px;
+      background-color: #f9f9f9;
+      padding: 10px;
+      width: 150px;
+    }
+  }
+  
