@@ -1,18 +1,10 @@
-.for_dark_theme{
-    --primary-color: #9a97f3;
-    --secondary-color: #818cab;
-    --font-color: #e1e1ff;
-    --bg-color: #161625;
-    --heading-color: #818cab;
-
-}
-
 .toggle-container {
     display: flex;
     align-items: center;
     justify-content: right;
-    margin-right: 2em ;
-    padding: 0 auto;
+    margin-right: 20px;
+    padding-right: 10px;
+    margin-top: 2px;
   }
   
   .toggle {
@@ -39,7 +31,6 @@
   
   .sun {
     left: 3px;
-    fill: #f9c313; /* Yellow color for the sun */
   }
   
   .moon {
@@ -48,5 +39,24 @@
   
   .theme-icon.hidden {
     opacity: 0;
+  }
+  
+  /* Add hover styles */
+  .toggle:hover {
+    background-color: #e9cc6d;
+  }
+  
+  .toggle.active:hover {
+    background-color: #242323;
+  }
+  
+  /* Add hover styles for sun and moon icons */
+  .theme-icon.sun:hover {
+    /* fill: #5302cb; Brighter yellow color on hover */
+    opacity: 0.3;
+  }
+  
+  .theme-icon.moon:hover {
+    opacity: 0.3;
   }
   

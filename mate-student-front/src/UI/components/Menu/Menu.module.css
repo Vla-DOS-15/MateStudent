@@ -1,0 +1,13 @@
+.MenuItem{
+    color: var(--body_color);
+    border-style:solid;
+    border-radius: 1ch;
+    padding-bottom: 20px;
+    padding: 0px;
+}
+
+.MenuContainer{
+    padding: 20px;
+    background-color: var(--header_background);
+}
+

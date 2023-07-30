@@ -1,0 +1,10 @@
+.footer{
+    background-color: var(--body_background);
+    color: var(--body_color);
+    padding: '10px';
+    text-align: 'center';
+    position: 'fixed';
+    bottom: '0';
+    width: '100%';
+}
+

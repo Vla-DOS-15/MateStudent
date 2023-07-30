@@ -1,3 +1,4 @@
+using MateStudent.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,9 @@ namespace MateStudent
             services.AddDbContext<MateStudentDbContext>(options =>
     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // services.AddSingleton<IConfiguration>(Configuration);
+
+            // Add the AuthenticationService
+            services.AddScoped<AuthenticationService>();
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>

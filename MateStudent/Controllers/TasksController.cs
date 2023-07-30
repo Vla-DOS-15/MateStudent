@@ -12,13 +12,6 @@ using System.Threading.Tasks;
 
 namespace MateStudent.Controllers
 {
-    public class TaskCreateModel
-    {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime Deadline { get; set; }
-        public IFormFile File { get; set; }
-    }
     [ApiController]
     [Route("api/[controller]")]
     public class TasksController : ControllerBase

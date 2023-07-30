@@ -1,11 +1,11 @@
 import React from 'react';
-
+import './Header.css'
 const Header = () => {
   return (
-    <header style={{ backgroundColor: '#f0f0f0', padding: '10px', textAlign: 'center' }}>
+    <header className='header'>
       <h1>My App Header</h1>
-      </header>
+      
+    </header>
   );
 };
-
 export default Header;

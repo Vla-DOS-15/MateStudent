@@ -1,0 +1,63 @@
+/* Загальні стилі для контейнера меню */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Стилі для кнопки відкриття/закриття меню на мобільних пристроях */
+  .menu-toggle {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+      cursor: pointer;
+    }
+  }
+  .menu-item {
+    border: thick double #32a1ce;
+    color: red;
+  }
+  /* Стилі для списку пунктів меню */
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  @media (max-width: 768px) {
+    .menu-list {
+      display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+    }
+  }
+  
+  /* Стилі для пунктів меню */
+  .menu-list div {
+    margin-bottom: 10px;
+  }
+  
+  .menu-list a {
+    font-size: 16px;
+    font-weight: 400;
+    color: #2f234f;
+    text-decoration: none;
+  }
+  
+  .menu-list a.active {
+    color: #574c4c;
+    font-weight: 500;
+    position: relative;
+  }
+  
+  .menu-list a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #574c4c;
+  }
+  
