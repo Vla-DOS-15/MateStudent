@@ -12,12 +12,15 @@ import Footer from './UI/components/Footer/Footer';
 import TaskForm from './UI/components/user/TaskForm/TaskForm';
 import ThemeMode from './UI/components/ThemeMode/ThemeMode'
 import Login from './UI/components/user/Login/Login';
+import { AuthProvider } from './UI/components/user/Login/AuthContext';
 
 import './App.css'
 
 const App = () => {
 
   return (
+    <AuthProvider>
+
     <Router>
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <div className='App-header'>
@@ -48,6 +51,8 @@ const App = () => {
         <Footer />
       </div>
     </Router>
+    </AuthProvider>
+
   );
 };
 

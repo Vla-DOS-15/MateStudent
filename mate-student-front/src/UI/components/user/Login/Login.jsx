@@ -1,10 +1,11 @@
-// components/Login.jsx
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
+import {useAuth} from './AuthContext'
+import Cookies from 'js-cookie';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '', name: '' });
-  const [userName, setUserName] = useState('');
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const { userName, isLoggedIn, setIsLoggedIn, setUserName } = useAuth(); // Використовуйте відповідні значення з контексту
   const [open, setOpen] = useState(false);
 
   const handleChange = (event) => {
@@ -14,6 +15,7 @@ const Login = () => {
       [name]: value,
     });
   };
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -21,6 +23,26 @@ const Login = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleLogout = async () => {
+    try {
+        const response = await fetch('http://localhost:54852/api/Authentication/logout', {
+          method: 'POST',
+        });
+  
+        if (response.ok) {
+          setIsLoggedIn(false); // Встановіть стан isLoggedIn на false
+          Cookies.remove('auth'); // Видаліть куку про аутентифікацію
+        
+        setUserName('');
+        setIsLoggedIn(false);
+      }
+    }
+     catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -35,7 +57,10 @@ const Login = () => {
   
       if (response.ok) {
         const data = await response.json();
-        setUserName(data.name); // Display the user's email on successful login
+        setIsLoggedIn(true); // Встановіть стан isLoggedIn на true
+
+        // Збережіть інформацію про аутентифікацію в кукі
+        Cookies.set('auth', JSON.stringify({ userId: data.userId, name: data.name }), { expires: 1 }); // Expires in 1 day
       } else {
         alert('Invalid credentials');
       }
@@ -45,8 +70,12 @@ const Login = () => {
   };
 
   return (
-    <div className='container'>
-      <button onClick={handleOpen}>Login</button>
+    <div>
+      {isLoggedIn ? (
+        <button onClick={handleLogout}>Logout</button>
+      ) : (
+        <button onClick={handleOpen}>Login</button>
+      )}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Login</DialogTitle>
         <form onSubmit={handleSubmit} className='form'>
@@ -79,8 +108,6 @@ const Login = () => {
           </DialogActions>
         </form>
       </Dialog>
-      {userName && <p>Welcome, {userName}!</p>}
-
     </div>
   );
 };

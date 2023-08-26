@@ -1,4 +1,5 @@
 using MateStudent.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,15 @@ namespace MateStudent
 
             // Add the AuthenticationService
             services.AddScoped<AuthenticationService>();
+
+            // установка конфигурации подключения
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options =>
+                    {
+                        options.Cookie.Name = "ApplicationCookie"; // Set your own cookie name
+                        options.ExpireTimeSpan = TimeSpan.FromDays(7); // Set the expiration time
+                    });
+
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
@@ -55,6 +65,7 @@ namespace MateStudent
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseCors();
             app.UseStaticFiles(); // Allow serving static files like uploaded files

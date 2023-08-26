@@ -3,4 +3,10 @@
     color: var(--body_color);
     padding: '10px';
     text-align: 'center';
+    
+}
+
+.buttonLogin{
+    text-align: center;
+    display:flex;
 }
